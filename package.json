@@ -1,7 +1,7 @@
 {
   "name": "devpatel-portfolio",
   "version": "2.0.0",
-  "homepage": "https://d3v-26.github.io/ubuntu",
+  "homepage": "https://d3v-26.github.io",
   "private": true,
   "scripts": {
     "dev": "next dev",
