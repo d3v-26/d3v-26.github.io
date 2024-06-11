@@ -332,7 +332,9 @@ function Projects() {
         "MySQL": "gray-300",
         "Angular": "blue-300",
         "TypeScript": "purple-600",
-        "SCSS":"purple-400"
+        "SCSS":"purple-400",
+        "GAN":"green-400",
+        "VAE":"green-600"
     }
 
     return (
