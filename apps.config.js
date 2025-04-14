@@ -8,6 +8,19 @@ import { displayTrash } from './components/apps/trash';
 import { displayAboutDev } from './components/apps/dev';
 import { displayTerminalCalc } from './components/apps/calc';
 
+const openLinkedIn = () => {
+    window.open('https://www.linkedin.com/in/dev-patel26/', '_blank');
+};
+
+const openGithub = () => {
+    window.open('https://github.com/d3v-26', '_blank');
+};
+
+const openCacheUp = () => {
+    window.open('https://cacheup.tech', '_blank');
+};
+  
+
 const apps = [
     {
         id: "chrome",
@@ -15,7 +28,7 @@ const apps = [
         icon: './themes/Yaru/apps/chrome.png',
         disabled: false,
         favourite: true,
-        desktop_shortcut: true,
+        desktop_shortcut: false,
         screen: displayChrome,
     },
     {
@@ -81,15 +94,33 @@ const apps = [
         desktop_shortcut: true,
         screen: displayTrash,
     },
-    // {
-    //     id: "gedit",
-    //     title: "Contact Me",
-    //     icon: './themes/Yaru/apps/gedit.png',
-    //     disabled: false,
-    //     favourite: false,
-    //     desktop_shortcut: true,
-    //     screen: displayGedit,
-    // },
+    {
+        id: "linkedin",
+        title: "LinkedIn",
+        icon: './themes/Yaru/apps/linkedin.png',
+        disabled: false,
+        favourite: true,
+        desktop_shortcut: false,
+        screen: openLinkedIn,
+    },
+    {
+        id: "github",
+        title: "Github",
+        icon: './themes/Yaru/apps/github.png',
+        disabled: false,
+        favourite: true,
+        desktop_shortcut: false,
+        screen: openGithub,
+    },
+    {
+        id: "cacheup",
+        title: "Cache Up",
+        icon: './themes/Yaru/apps/cacheup.png',
+        disabled: false,
+        favourite: false,
+        desktop_shortcut: true,
+        screen: openCacheUp,
+    },
 ]
 
 export default apps;

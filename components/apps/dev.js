@@ -122,9 +122,9 @@ function About() {
                 <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-0"></div>
             </div>
             <ul className=" mt-4 leading-tight tracking-tight text-sm md:text-base w-5/6 md:w-3/4 emoji-list">
-                <li className=" list-pc">I'm a <span className=" font-medium">Graduate</span> with Master's degree in Computer Science. I've completed my 6 month SWE intern at <u className=' cursor-pointer '> <a href="https://en.wikipedia.org/wiki/IIT_Bombay" target={"_blank"}>IIT Bombay</a> </u>, and now I'm looking for Full-time Software engineer roles! ( Hit me up <a className='text-underline' href='mailto:devrpatel26@gmail.com'><u>@devrpatel26@gmail.com</u></a> :) )</li>
-                <li className=" mt-3 list-building"> I take pleasure in creating outstanding software solutions for real-world challenges.</li>
-                <li className=" mt-3 list-time"> When I am not coding my next project, I like to spend my time reading books, playing GTA V or watching <a href="http://www.youtube.com/@Sidemen" target="_blank" rel="noreferrer"> Sidemen videos.</a></li>
+                <li className=" list-pc">I'm a <span className=" font-medium">Graduate</span> with Master's degree in Computer Science with 2 years of industry experience, and now I'm looking for Full-time Software engineer roles! ( Hit me up <a className='text-underline' href='mailto:devrpatel26@gmail.com'><u>@devrpatel26@gmail.com</u></a> :) )</li>
+                <li className=" mt-3 list-building"> I take pleasure in creating full stack software solutions for real-world challenges.</li>
+                <li className=" mt-3 list-time"> When I am not coding my next project, I like to spend my time reading books, playing GTA V, Call of Duty or watching <a href="http://www.youtube.com/@Sidemen" target="_blank" rel="noreferrer"> Sidemen videos.</a></li>
                 <li className=" mt-3 list-star"> And I also have interest in UI/UX, Machine Learning & Computer Vision!</li>
             </ul>
         </>
@@ -357,7 +357,6 @@ function Projects() {
                                 <div className="flex flex-wrap justify-between items-center">
                                     <div className='flex justify-center items-center'>
                                         <div className=" text-base md:text-lg mr-2">{project.name.toLowerCase()}</div>
-                                        {/* <iframe src={`https://ghbtns.com/github-btn.html?user=Dev9patel&repo=${projectName}&type=star&count=true`} frameBorder="0" scrolling="0" width="150" height="20" title={project.name.toLowerCase()+"-star"}></iframe> */}
                                     </div>
                                     <div className="text-gray-300 font-light text-sm">{project.date}</div>
                                 </div>
