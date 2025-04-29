@@ -101,6 +101,7 @@ const apps = [
         disabled: false,
         favourite: true,
         desktop_shortcut: false,
+        isLink: true,
         screen: openLinkedIn,
     },
     {
@@ -110,6 +111,7 @@ const apps = [
         disabled: false,
         favourite: true,
         desktop_shortcut: false,
+        isLink: true,
         screen: openGithub,
     },
     {
