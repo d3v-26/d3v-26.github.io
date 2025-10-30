@@ -186,6 +186,10 @@ input[type=range].ubuntu-slider::-webkit-slider-thumb {
     list-style: "🏫";
 }
 
+.list-st {
+    list-style: "❤️‍🔥";
+}
+
 .list-building {
     list-style: "👨🏻‍💻";
 }

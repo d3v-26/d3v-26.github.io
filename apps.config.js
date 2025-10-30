@@ -19,6 +19,12 @@ const openGithub = () => {
 const openCacheUp = () => {
     window.open('https://cacheup.tech', '_blank');
 };
+
+const openResume = () => {
+    localStorage.setItem('about-section', 'resume');
+    return displayAboutDev();
+
+}
   
 
 const apps = [
@@ -123,6 +129,16 @@ const apps = [
         desktop_shortcut: true,
         screen: openCacheUp,
     },
+    {
+        id: "resume",
+        title: "Resume",
+        icon: './themes/Yaru/apps/gedit.png',
+        disabled: false,
+        favourite: false,
+        desktop_shortcut: true,
+        isLink: true,
+        screen: openResume,
+    }
 ]
 
 export default apps;
