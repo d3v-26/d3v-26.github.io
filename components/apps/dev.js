@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactGA from 'react-ga4';
 
 export class AboutDev extends Component {
 
@@ -36,10 +35,6 @@ export class AboutDev extends Component {
 
         // store this state
         localStorage.setItem("about-section", screen);
-
-        // google analytics
-        // ReactGA.send({ hitType: "pageview", page: `/${screen}`, title: "Custom Title" });
-
 
         this.setState({
             screen: this.screens[screen],
@@ -124,7 +119,7 @@ function About() {
             <ul className=" mt-4 leading-tight tracking-tight text-sm md:text-base w-5/6 md:w-3/4 emoji-list">
                 <li className=" list-pc">I'm a <span className=" font-medium">Graduate</span> with Master's degree in Computer Science with 2 years of industry experience, and now I'm looking for Full-time Software engineer roles! ( Hit me up <a className='text-underline' href='mailto:devrpatel26@gmail.com'><u>@devrpatel26@gmail.com</u></a> :) )</li>
                 <li className=" mt-3 list-building"> I take pleasure in creating full stack software solutions for real-world challenges.</li>
-                <li className=" mt-3 list-time"> When I am not coding my next project, I like to spend my time reading books, playing Elden Ring, GTA V, Call of Duty or watching <a href="http://www.youtube.com/@Sidemen" target="_blank" rel="noreferrer"> Sidemen videos.</a></li>
+                <li className=" mt-3 list-time"> When I am not coding my next project, I like to spend my time reading books, playing Elden Ring, GTA V, Call of Duty or watching <a href="https://www.youtube.com/@Sidemen" target="_blank" rel="noreferrer"> Sidemen videos.</a></li>
                 <li className="mt-3 list-st">I am passionate about building intelligent, reliable systems that bridge AI research and real-world applications as well as Formula 1 racing 🏎️. </li>
                 <li className=" mt-3 list-star"> And I also have interest in UI/UX, Machine Learning & Computer Vision!</li>
             </ul>
@@ -245,7 +240,7 @@ function Projects() {
             date: "Apr 2025",
             link: "https://github.com/d3v-26/walkie-talkie",
             description: [
-                "imple walkie-talkie–style application written in Go that lets users on the same local network communicate using audio.",
+                "Simple walkie-talkie–style application written in Go that lets users on the same local network communicate using audio.",
             ],
             domains: ["GO", "UDP", "Audio Streaming"]
         },

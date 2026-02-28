@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
-import ReactGA from 'react-ga4';
 
 export class Terminal extends Component {
     constructor() {
@@ -318,11 +317,6 @@ export class Terminal extends Component {
                 return;
             case "sudo":
 
-                // ReactGA.event({
-                //     category: "Sudo Access",
-                //     action: "lol",
-                // });
-
                 result = "<img class=' w-2/5' src='./images/memes/used-sudo-command.webp' />";
                 break;
             default:
@@ -337,17 +331,17 @@ export class Terminal extends Component {
         return str.split('').map(char => {
             switch (char) {
                 case '&':
-                    return '&amp';
+                    return '&amp;';
                 case '<':
-                    return '&lt';
+                    return '&lt;';
                 case '>':
-                    return '&gt';
+                    return '&gt;';
                 case '"':
-                    return '&quot';
+                    return '&quot;';
                 case "'":
-                    return '&#x27';
+                    return '&#x27;';
                 case '/':
-                    return '&#x2F';
+                    return '&#x2F;';
                 default:
                     return char;
             }

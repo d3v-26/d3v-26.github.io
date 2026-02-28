@@ -8,7 +8,6 @@ import AllApplications from '../screen/all-applications'
 import DesktopMenu from '../context menus/desktop-menu';
 import DefaultMenu from '../context menus/default';
 import $ from 'jquery';
-import ReactGA from 'react-ga4';
 
 export class Desktop extends Component {
     constructor() {
@@ -35,9 +34,6 @@ export class Desktop extends Component {
     }
 
     componentDidMount() {
-        // google analytics
-        // ReactGA.send({ hitType: "pageview", page: "/desktop", title: "Custom Title" });
-
         this.fetchAppsData();
         this.setContextListeners();
         this.setEventListeners();
@@ -50,7 +46,7 @@ export class Desktop extends Component {
 
     checkForNewFolders = () => {
         var new_folders = localStorage.getItem('new_folders');
-        if (new_folders === null && new_folders !== undefined) {
+        if (new_folders === null) {
             localStorage.setItem("new_folders", JSON.stringify([]));
         }
         else {
@@ -92,17 +88,9 @@ export class Desktop extends Component {
         this.hideAllContextMenu();
         switch (e.target.dataset.context) {
             case "desktop-area":
-                // ReactGA.event({
-                //     category: `Context Menu`,
-                //     action: `Opened Desktop Context Menu`
-                // });
                 this.showContextMenu(e, "desktop");
                 break;
             default:
-                // ReactGA.event({
-                //     category: `Context Menu`,
-                //     action: `Opened Default Context Menu`
-                // });
                 this.showContextMenu(e, "default");
         }
     }
@@ -346,13 +334,6 @@ export class Desktop extends Component {
     }
 
     openApp = (objId) => {
-
-        // google analytics
-        // ReactGA.event({
-        //     category: `Open App`,
-        //     action: `Opened ${objId} window`
-        // });
-
         // if the app is disabled
         if (this.state.disabled_apps[objId]) return;
         if(objId === "github") {
