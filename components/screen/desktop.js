@@ -31,7 +31,11 @@ export class Desktop extends Component {
                 default: false,
             },
             showNameBar: false,
-            folder_positions: {},
+            folder_positions: (() => {
+                if (typeof window === 'undefined') return {};
+                try { return JSON.parse(localStorage.getItem('folder_positions') || '{}'); }
+                catch (_) { return {}; }
+            })(),
         }
     }
 
@@ -78,13 +82,6 @@ export class Desktop extends Component {
             this.updateAppsData();
         }
 
-        // Load saved folder positions
-        try {
-            const saved = JSON.parse(localStorage.getItem('folder_positions') || '{}');
-            this.setState({ folder_positions: saved });
-        } catch (_) {
-            this.setState({ folder_positions: {} });
-        }
     }
 
     setEventListeners = () => {
@@ -120,19 +117,14 @@ export class Desktop extends Component {
         let { posx, posy } = this.getMenuPosition(e);
         let contextMenu = document.getElementById(`${menuName}-menu`);
 
-        // Measure dimensions while hidden using visibility:hidden so layout is calculated
-        contextMenu.style.visibility = 'hidden';
-        contextMenu.style.display = 'block';
-        let menuWidth = contextMenu.offsetWidth;
-        let menuHeight = contextMenu.offsetHeight;
-        contextMenu.style.display = '';
-        contextMenu.style.visibility = '';
+        const menuW = 208; // w-52
+        const menuH = 150; // ~4 menu items
 
-        if (posx + menuWidth > window.innerWidth) posx -= menuWidth;
-        if (posy + menuHeight > window.innerHeight) posy -= menuHeight;
+        if (posx + menuW > window.innerWidth)  posx -= menuW;
+        if (posy + menuH > window.innerHeight) posy -= menuH;
 
         contextMenu.style.left = posx + 'px';
-        contextMenu.style.top = posy + 'px';
+        contextMenu.style.top  = posy + 'px';
 
         this.setState({ context_menus: { ...this.state.context_menus, [menuName]: true } });
     }
@@ -262,7 +254,7 @@ export class Desktop extends Component {
                 if (app.id.startsWith('new-folder-')) {
                     appsJsx.push(
                         <Draggable
-                            key={index}
+                            key={app.id}
                             defaultPosition={this.state.folder_positions[app.id] || { x: 0, y: 0 }}
                             onStop={(e, data) => this.saveFolderPosition(app.id, { x: data.x, y: data.y })}
                         >
@@ -282,9 +274,10 @@ export class Desktop extends Component {
     }
 
     saveFolderPosition = (folder_id, pos) => {
-        const folder_positions = { ...this.state.folder_positions, [folder_id]: pos };
+        const folder_positions = JSON.parse(localStorage.getItem('folder_positions') || '{}');
+        folder_positions[folder_id] = pos;
         localStorage.setItem('folder_positions', JSON.stringify(folder_positions));
-        this.setState({ folder_positions });
+        // No setState — avoids re-render that causes snap
     }
 
     renderWindows = () => {
@@ -532,10 +525,11 @@ export class Desktop extends Component {
         localStorage.setItem('new_folders', JSON.stringify(new_folders));
 
         // Remove saved position
-        const folder_positions = { ...this.state.folder_positions };
-        delete folder_positions[folder_id];
-        localStorage.setItem('folder_positions', JSON.stringify(folder_positions));
-        this.setState({ folder_positions });
+        try {
+            const folder_positions = JSON.parse(localStorage.getItem('folder_positions') || '{}');
+            delete folder_positions[folder_id];
+            localStorage.setItem('folder_positions', JSON.stringify(folder_positions));
+        } catch (_) {}
 
         this.updateAppsData();
     }
