@@ -108,20 +108,31 @@ function About() {
             <div className="w-20 md:w-28 my-4 bg-white rounded-full">
                 <img className="w-full" src="./images/logos/dev-bitmoji.png" alt="Dev Patel Logo" />
             </div>
-            <div className=" mt-4 md:mt-8 text-lg md:text-2xl text-center px-1">
-                <div>My name is <span className="font-bold">Dev Patel</span> ,</div>
-                <div className="font-normal ml-1">I'm a <span className="text-pink-600 font-bold">Full Stack Dev</span></div>
+            <div className="mt-4 md:mt-8 text-lg md:text-2xl text-center px-1">
+                <div>Hi, I'm <span className="font-bold">Dev Patel</span></div>
+                <div className="font-normal mt-1">
+                    <span className="text-pink-600 font-bold">Full Stack Engineer</span>
+                    <span className="text-gray-400 font-light"> · </span>
+                    <span className="text-ubt-gedit-orange font-semibold">ML Enthusiast</span>
+                </div>
             </div>
-            <div className=" mt-4 relative md:my-8 pt-px bg-white w-32 md:w-48">
+            <div className="mt-4 relative md:my-6 pt-px bg-white w-32 md:w-48">
                 <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-0"></div>
                 <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-0"></div>
             </div>
-            <ul className=" mt-4 leading-tight tracking-tight text-sm md:text-base w-5/6 md:w-3/4 emoji-list">
-                <li className=" list-pc">I'm a <span className=" font-medium">Graduate</span> with Master's degree in Computer Science with 2 years of industry experience, and now I'm looking for Full-time Software engineer roles! ( Hit me up <a className='text-underline' href='mailto:devrpatel26@gmail.com'><u>@devrpatel26@gmail.com</u></a> :) )</li>
-                <li className=" mt-3 list-building"> I take pleasure in creating full stack software solutions for real-world challenges.</li>
-                <li className=" mt-3 list-time"> When I am not coding my next project, I like to spend my time reading books, playing Elden Ring, GTA V, Call of Duty or watching <a href="https://www.youtube.com/@Sidemen" target="_blank" rel="noreferrer"> Sidemen videos.</a></li>
-                <li className="mt-3 list-st">I am passionate about building intelligent, reliable systems that bridge AI research and real-world applications as well as Formula 1 racing 🏎️. </li>
-                <li className=" mt-3 list-star"> And I also have interest in UI/UX, Machine Learning & Computer Vision!</li>
+            <ul className="mt-2 leading-tight tracking-tight text-sm md:text-base w-5/6 md:w-3/4 emoji-list">
+                <li className="list-pc">
+                    <span className="font-medium">MS Computer Science</span> from the University of Florida <span className="text-gray-400">(GPA 3.8/4.0)</span> with <span className="font-medium">2+ years of industry experience</span> shipping production-grade full-stack systems. Actively seeking full-time Software Engineer roles — <a className="text-ubt-gedit-orange underline" href="mailto:devrpatel26@gmail.com">devrpatel26@gmail.com</a>
+                </li>
+                <li className="mt-3 list-building">
+                    I build end-to-end — <span className="font-medium">React / Next.js</span> frontends, <span className="font-medium">Node.js / Go</span> backends, and <span className="font-medium">ML pipelines</span> with PyTorch. I care as much about DX and clean architecture as I do about shipping fast.
+                </li>
+                <li className="mt-3 list-star">
+                    Passionate about bridging <span className="font-medium text-ubt-gedit-orange">AI research and real-world products</span> — NLP, computer vision, and generative models are my playground. Also obsessed with crafting delightful UI/UX (this portfolio is exhibit A).
+                </li>
+                <li className="mt-3 list-time">
+                    Off the keyboard: Elden Ring ⚔️, GTA V, Call of Duty, Formula 1 🏎️, and <a className="underline" href="https://www.youtube.com/@Sidemen" target="_blank" rel="noreferrer">Sidemen</a> marathons. Sometimes a book, if the game servers are down.
+                </li>
             </ul>
         </>
     )
@@ -129,38 +140,40 @@ function About() {
 function Education() {
     return (
         <>
-            <div className=" font-medium relative text-2xl mt-2 md:mt-4 mb-4">
+            <div className="font-medium relative text-2xl mt-2 md:mt-4 mb-4">
                 Education
                 <div className="absolute pt-px bg-white mt-px top-full w-full">
                     <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
                     <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
                 </div>
             </div>
-            <ul className=" w-10/12  mt-4 ml-4 px-0 md:px-1">
+            <ul className="w-10/12 mt-4 ml-4 px-0 md:px-1 space-y-6">
                 <li className="list-disc">
-                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
+                    <div className="text-lg md:text-xl text-left font-bold leading-tight">
                         University of Florida
                     </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2022 - 2024</div>
-                    <div className=" text-sm md:text-base">Computer Science</div>
-                    <div className="text-sm text-gray-300 font-bold mt-1">GPA &nbsp; 3.8/4.0</div>
+                    <div className="text-sm text-gray-400 mt-0.5">Master of Science · Computer Science · 2022 – 2024</div>
+                    <div className="text-sm text-green-400 font-semibold mt-1">GPA 3.8 / 4.0</div>
+                    <div className="mt-2 text-xs text-gray-300 font-medium uppercase tracking-wide">Relevant Coursework</div>
+                    <div className="flex flex-wrap gap-1 mt-1">
+                        {["Advanced Data Structures", "Operating Systems", "Distributed Computing", "Machine Learning", "Computer Vision", "Natural Language Processing", "Compilers", "Analysis of Algorithms"].map(c => (
+                            <span key={c} className="px-2 py-0.5 bg-gray-700 bg-opacity-60 rounded text-xs text-gray-200">{c}</span>
+                        ))}
+                    </div>
                 </li>
                 <li className="list-disc">
-                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
-                        DHARMSINH DESAI UNIVERSITY -- DDU
+                    <div className="text-lg md:text-xl text-left font-bold leading-tight">
+                        Dharmsinh Desai University
                     </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2018 - 2022</div>
-                    <div className=" text-sm md:text-base">Computer Engineering</div>
-                    <div className="text-sm text-gray-300 font-bold mt-1">CGPA &nbsp; 8.9/10</div>
+                    <div className="text-sm text-gray-400 mt-0.5">Bachelor of Technology · Computer Engineering · 2018 – 2022</div>
+                    <div className="text-sm text-green-400 font-semibold mt-1">CGPA 8.9 / 10</div>
+                    <div className="mt-2 text-xs text-gray-300 font-medium uppercase tracking-wide">Relevant Coursework</div>
+                    <div className="flex flex-wrap gap-1 mt-1">
+                        {["Data Structures & Algorithms", "Database Management", "Computer Networks", "Object-Oriented Programming", "Software Engineering", "Web Technologies", "Artificial Intelligence", "Cloud Computing"].map(c => (
+                            <span key={c} className="px-2 py-0.5 bg-gray-700 bg-opacity-60 rounded text-xs text-gray-200">{c}</span>
+                        ))}
+                    </div>
                 </li>
-                {/* <li className="list-disc mt-5">
-                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
-                        Class 12<sup>th</sup> (GSEB)
-                    </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2016 - 2018</div>
-                    <div className=" text-sm md:text-base">Maths, Physics, Chemistry</div>
-                    <div className="text-sm text-gray-300 font-bold mt-1">Percentile Rank &nbsp; 99.86</div>
-                </li> */}
             </ul>
         </>
     )
@@ -168,58 +181,67 @@ function Education() {
 function Skills() {
     return (
         <>
-            <div className=" font-medium relative text-2xl mt-2 md:mt-4 mb-4">
+            <div className="font-medium relative text-2xl mt-2 md:mt-4 mb-4">
                 Technical Skills
                 <div className="absolute pt-px bg-white mt-px top-full w-full">
                     <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
                     <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
                 </div>
             </div>
-            <ul className=" tracking-tight text-sm md:text-base w-10/12 emoji-list">
-                <li className=" list-arrow text-sm md:text-base mt-4 leading-tight tracking-tight">
-                    I've worked with a wide variety of programming languages & frameworks.
+            <ul className="tracking-tight text-sm md:text-base w-10/12 emoji-list">
+                <li className="list-arrow text-sm md:text-base mt-4 leading-tight tracking-tight">
+                    Full-stack engineer with depth across <strong className="text-ubt-gedit-orange">systems programming, web development, and applied ML</strong>. Comfortable from bare-metal algorithms to cloud deployments.
                 </li>
-                <li className=" list-arrow text-sm md:text-base mt-4 leading-tight tracking-tight">
-                    <div> My areas of expertise are <strong className="text-ubt-gedit-orange">software engineering, web development, cloud infrastructure, and applied machine learning.</strong></div>
-                </li>
-                <li className=" list-arrow text-sm md:text-base mt-4 leading-tight tracking-tight">
-                    <div>Here are the tools I use most frequently:</div>
+                <li className="list-arrow text-sm md:text-base mt-3 leading-tight tracking-tight">
+                    Here's my current toolkit:
                 </li>
             </ul>
-            <div className="w-full md:w-10/12 flex mt-4">
-                <div className=" text-sm text-center md:text-base w-1/2 font-bold">Languages & Tools</div>
-                <div className=" text-sm text-center md:text-base w-1/2 font-bold">Frameworks & Libraries</div>
-            </div>
-            <div className="w-full md:w-10/12 flex justify-center items-start font-bold text-center">
-                <div className="px-2 w-1/2">
-                    <div className="flex flex-wrap justify-center items-start w-full mt-2">
-                        <img className="m-1" src="https://img.shields.io/badge/-JavaScript-%23F7DF1C?style=flat&logo=javascript&logoColor=000000&labelColor=%23F7DF1C&color=%23FFCE5A" alt="Dev javascript" />
-                        <img className="m-1" src="https://img.shields.io/badge/C%2B%2B-00599C?style=flat&logo=c%2B%2B&logoColor=white" alt="Dev c++" />
-                        <img className="m-1" src="http://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=ffffff" alt="Dev python" />
-                        <img className="m-1" src="https://img.shields.io/badge/Dart-0175C2?style=flat&logo=dart&logoColor=white" alt="Dev dart" />
-                        <a href="https://www.google.com/search?q=is+html+a+language%3F" target="_blank" rel="noreferrer"><img title="yes it's a language!" className="m-1" src="https://img.shields.io/badge/-HTML5-%23E44D27?style=flat&logo=html5&logoColor=ffffff" alt="Dev HTML" /></a>
-                        <img src="https://img.shields.io/badge/-Sass-%23CC6699?style=flat&logo=sass&logoColor=ffffff" alt="Dev SASS" className="m-1" />
-                        <img src="https://img.shields.io/badge/-Git-%23F05032?style=flat&logo=git&logoColor=%23ffffff" alt="Dev git" className="m-1" />
-                        <img src="https://img.shields.io/badge/-Firebase-FFCA28?style=flat&logo=firebase&logoColor=ffffff" alt="Dev firebase" className="m-1" />
-                    </div>
-                </div>
-                <div className="px-2 flex flex-wrap items-start w-1/2">
-                    <div className="flex flex-wrap justify-center items-start w-full mt-2">
-                        <img className=" m-1" src="https://img.shields.io/badge/Next-black?style=flat&logo=next.js&logoColor=ffffff" alt="Dev next" />
-                        <img className=" m-1" src="https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=ffffff" alt="Dev react" />
-                        <img className="m-1" src="https://img.shields.io/badge/Flutter-02569B?style=flat&logo=flutter&logoColor=white" alt="Dev flutter" />
-                        <img className="m-1" src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white" alt="Dev tailwind css" />
-                        <img src="https://img.shields.io/badge/-Nodejs-339933?style=flat&logo=Node.js&logoColor=ffffff" alt="Dev node.js" className="m-1" />
-                        <img src="https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jquery&logoColor=white" alt="Dev jquery" className="m-1" />
-                        <img className="m-1" src="https://img.shields.io/badge/Redux-593D88?style=flat&logo=redux&logoColor=white" alt="Dev redux" />
-                    </div>
+
+            {/* Languages */}
+            <div className="w-full md:w-10/12 mt-5">
+                <div className="text-xs text-gray-400 font-semibold uppercase tracking-widest mb-2 pl-1">Languages</div>
+                <div className="flex flex-wrap justify-start items-center gap-1 px-1">
+                    <img className="m-0.5" src="https://img.shields.io/badge/-JavaScript-%23F7DF1C?style=flat&logo=javascript&logoColor=000000&labelColor=%23F7DF1C&color=%23FFCE5A" alt="JavaScript" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white" alt="TypeScript" />
+                    <img className="m-0.5" src="http://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=ffffff" alt="Python" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white" alt="Go" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white" alt="Java" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/C%2B%2B-00599C?style=flat&logo=c%2B%2B&logoColor=white" alt="C++" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Dart-0175C2?style=flat&logo=dart&logoColor=white" alt="Dart" />
+                    <a href="https://www.google.com/search?q=is+html+a+language%3F" target="_blank" rel="noreferrer"><img title="yes it's a language!" className="m-0.5" src="https://img.shields.io/badge/-HTML5-%23E44D27?style=flat&logo=html5&logoColor=ffffff" alt="HTML5" /></a>
+                    <img className="m-0.5" src="https://img.shields.io/badge/-Sass-%23CC6699?style=flat&logo=sass&logoColor=ffffff" alt="Sass" />
                 </div>
             </div>
-            <ul className=" tracking-tight text-sm md:text-base w-10/12 emoji-list mt-4">
-                <li className=" list-arrow text-sm md:text-base mt-4 leading-tight tracking-tight">
-                    <span> And of course,</span> <img className=" inline ml-1" src="http://img.shields.io/badge/-Linux-0078D6?style=plastic&logo=linux&logoColor=ffffff" alt="Dev linux" /> <span>!</span>
-                </li>
-            </ul>
+
+            {/* Frameworks & Libraries */}
+            <div className="w-full md:w-10/12 mt-4">
+                <div className="text-xs text-gray-400 font-semibold uppercase tracking-widest mb-2 pl-1">Frameworks & Libraries</div>
+                <div className="flex flex-wrap justify-start items-center gap-1 px-1">
+                    <img className="m-0.5" src="https://img.shields.io/badge/Next-black?style=flat&logo=next.js&logoColor=ffffff" alt="Next.js" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=ffffff" alt="React" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Angular-DD0031?style=flat&logo=angular&logoColor=white" alt="Angular" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Flutter-02569B?style=flat&logo=flutter&logoColor=white" alt="Flutter" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/-Nodejs-339933?style=flat&logo=Node.js&logoColor=ffffff" alt="Node.js" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Redux-593D88?style=flat&logo=redux&logoColor=white" alt="Redux" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white" alt="PyTorch" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jquery&logoColor=white" alt="jQuery" />
+                </div>
+            </div>
+
+            {/* Tools & Infra */}
+            <div className="w-full md:w-10/12 mt-4">
+                <div className="text-xs text-gray-400 font-semibold uppercase tracking-widest mb-2 pl-1">Tools & Infrastructure</div>
+                <div className="flex flex-wrap justify-start items-center gap-1 px-1">
+                    <img className="m-0.5" src="https://img.shields.io/badge/-Git-%23F05032?style=flat&logo=git&logoColor=%23ffffff" alt="Git" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white" alt="GitHub Actions" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/-Firebase-FFCA28?style=flat&logo=firebase&logoColor=ffffff" alt="Firebase" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/MySQL-00000F?style=flat&logo=mysql&logoColor=white" alt="MySQL" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" alt="Docker" />
+                    <img className="m-0.5" src="http://img.shields.io/badge/-Linux-0078D6?style=flat&logo=linux&logoColor=ffffff" alt="Linux" />
+                </div>
+            </div>
         </>
     )
 }
@@ -326,38 +348,35 @@ const project_list = [
     }
 ];
 
-const tag_colors = {
-    "javascript": "yellow-300",
-    "C++": "red-600",
-    "MinHeap": "red-500",
-    "RedBlackTree": "red-400",
-    "Java": "red-500",
-    "ASM": "blue-400",
-    "F#": "yellow-400",
-    "Distributed Principles": "blue-400",
-    "Python": "blue-500",
-    "PyTorch": "purple-500",
-    "Multi-modal analysis": "pink-600",
-    "NLP": "pink-400",
-    "React": "yellow-600",
-    "Materialize": "green-600",
-    "JavaFX": "green-200",
-    "MySQL": "gray-300",
-    "Angular": "blue-300",
-    "TypeScript": "purple-600",
-    "SCSS":"purple-400",
-    "GAN":"green-400",
-    "VAE":"green-600",
-    "Next.js":"green-200",
-    "Tailwind CSS":"gray-400",
-    "GO":"purple-600",
-    "UDP":"red-400",
-    "Audio Streaming":"pink-300",
-    "Dart":"blue-300",
-    "Node.js":"green-400",
-    "Firebase":"yellow-400",
-    "Sass":"pink-500"
-};
+// Deterministic palette — full class names so Tailwind JIT includes them
+const TAG_PALETTE = [
+    ["border-yellow-300", "text-yellow-300"],
+    ["border-pink-400", "text-pink-400"],
+    ["border-blue-400", "text-blue-400"],
+    ["border-green-400", "text-green-400"],
+    ["border-purple-400", "text-purple-400"],
+    ["border-orange-300", "text-orange-300"],
+    ["border-cyan-400", "text-cyan-400"],
+    ["border-red-400", "text-red-400"],
+    ["border-indigo-400", "text-indigo-400"],
+    ["border-teal-400", "text-teal-400"],
+    ["border-yellow-500", "text-yellow-500"],
+    ["border-pink-500", "text-pink-500"],
+    ["border-blue-300", "text-blue-300"],
+    ["border-green-300", "text-green-300"],
+    ["border-purple-300", "text-purple-300"],
+    ["border-orange-400", "text-orange-400"],
+    ["border-cyan-300", "text-cyan-300"],
+    ["border-red-300", "text-red-300"],
+    ["border-indigo-300", "text-indigo-300"],
+    ["border-teal-300", "text-teal-300"],
+];
+
+function tagColor(tag) {
+    let h = 0;
+    for (let i = 0; i < tag.length; i++) h = (h * 31 + tag.charCodeAt(i)) >>> 0;
+    return TAG_PALETTE[h % TAG_PALETTE.length];
+}
 
 function Projects() {
     const [projects, setProjects] = useState(project_list);
@@ -417,17 +436,10 @@ function Projects() {
                                     }
                                 </ul>
                                 <div className="flex flex-wrap items-start justify-start text-xs py-2">
-                                    {
-                                        (project.domains ?
-                                            project.domains.map((domain, index) => {
-                                                const borderColorClass = `border-${tag_colors[domain]}`
-                                                const textColorClass = `text-${tag_colors[domain]}`
-
-                                                return <span key={index} className={`px-1.5 py-0.5 w-max border ${borderColorClass} ${textColorClass} m-1 rounded-full`}>{domain}</span>
-                                            })
-
-                                            : null)
-                                    }
+                                    {project.domains && project.domains.map((domain, index) => {
+                                        const [borderClass, textClass] = tagColor(domain);
+                                        return <span key={index} className={`px-1.5 py-0.5 w-max border ${borderClass} ${textClass} m-1 rounded-full`}>{domain}</span>;
+                                    })}
                                 </div>
                             </div>
                         </a>
