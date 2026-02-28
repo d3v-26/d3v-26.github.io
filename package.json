@@ -15,7 +15,6 @@
     "node": ">=16.x"
   },
   "dependencies": {
-    "@emailjs/browser": "^3.10.0",
     "autoprefixer": "^10.4.13",
     "expr-eval": "^2.0.2",
     "jquery": "^3.6.3",

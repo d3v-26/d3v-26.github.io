@@ -4,7 +4,7 @@ import { displayTerminal } from './components/apps/terminal';
 import { displaySettings } from './components/apps/settings';
 import { displayChrome } from './components/apps/chrome';
 import { displayTrash } from './components/apps/trash';
-// import { displayGedit } from './components/apps/gedit';
+import { displayGedit } from './components/apps/gedit';
 import { displayAboutDev } from './components/apps/dev';
 import { displayTerminalCalc } from './components/apps/calc';
 
@@ -81,6 +81,15 @@ const apps = [
         favourite: true,
         desktop_shortcut: false,
         screen: displaySpotify, // India Top 50 Playlist 😅
+    },
+    {
+        id: "gedit",
+        title: "Send a Message",
+        icon: './themes/Yaru/apps/gedit.png',
+        disabled: false,
+        favourite: true,
+        desktop_shortcut: false,
+        screen: displayGedit,
     },
     {
         id: "settings",
