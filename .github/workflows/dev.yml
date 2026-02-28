@@ -51,3 +51,13 @@ jobs:
           folder: out
           target-folder: dev
           clean: true
+
+      - name: Ensure .nojekyll at gh-pages root
+        run: mkdir -p /tmp/root-nojekyll && touch /tmp/root-nojekyll/.nojekyll
+
+      - name: Deploy .nojekyll to gh-pages root
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: /tmp/root-nojekyll
+          clean: false
