@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 
 export class AboutDev extends Component {
 
@@ -224,141 +224,165 @@ function Skills() {
     )
 }
 
-function Projects() {
-    const project_list = [
-        {
-            name: "Ubuntu Themed Portfolio Website",
-            date: "Apr 2024",
-            link: "https://github.com/d3v-26/d3v-26.github.io",
-            description: [
-                "Ubuntu themed portfolio website built with Next.js and Tailwind CSS",
-            ],
-            domains: ["Next.js", "Tailwind CSS", "javascript"]
-        },
-        {
-            name: "Walkie Talkie",
-            date: "Apr 2025",
-            link: "https://github.com/d3v-26/walkie-talkie",
-            description: [
-                "Simple walkie-talkie–style application written in Go that lets users on the same local network communicate using audio.",
-            ],
-            domains: ["GO", "UDP", "Audio Streaming"]
-        },
-        {
-            name: "GatorTaxi",
-            date: "Apr 2023",
-            link: "https://github.com/d3v-26/GatorTaxi",
-            description: [
-                "Used Red-Black Trees & MinHeap for ride information storage using C++ from scratch",
-            ],
-            domains: ["C++", "MinHeap", "RedBlackTree"]
-        },
-        {
-            name: "Compact Compiler",
-            date: "Dec 2022",
-            link: "https://github.com/d3v-26/Compiler-PLP-Project",
-            description: [
-                "Implement a complete compiler using Java and ASM for a user-defined language",
-            ],
-            domains: ["Java", "ASM"]
-        },
-        {
-            name: "Distributed Concurrent Systems",
-            date: "Aug 2023",
-            link: "https://github.com/d3v-26/COP5615-Project3",
-            description: [
-                "Implemented a concurrent client-server system in F#",
-            ],
-            domains: ["F#", "Distributed Principles"]
-        },
-        {
-            name: "Intermediate task transfer learning",
-            date: "Apr 2023",
-            link: "https://drive.google.com/file/d/1qhvBs44mK5bejG8WJHAC3k9GS7XnhP6a/view?usp=share_link",
-            description: [
-                "Implemented a task transfer learning project, for sarcasm detection, using transfer learning techniques from a related tasks such as sentiment detection, humor detection, irony detection etc",
-            ],
-            domains: ["Python", "PyTorch", "Multi-modal analysis", "NLP"]
-        },
-        {
-            name: "GAN & VAE on MNIST",
-            date: "Apr 2023",
-            link: "https://github.com/d3v-26/GAN-VAE-MNIST",
-            description: [
-                "Implemented GAN and VAE on MNIST dataset.",
-            ],
-            domains: ["Python", "PyTorch", "GAN", "VAE"]
-        },
-        {
-            name: "React Boilerplate",
-            date: "Feb 2021",
-            link: "https://github.com/d3v-26/react-boilerplate",
-            description: [
-                "Boilerplate code to get you started on your react project",
-            ],
-            domains: ["React", "javascript"]
-        },
-        {
-            name: "HackerNews Feed",
-            date: "Feb 2021",
-            link: "https://github.com/d3v-26/hacker-feed",
-            description: [
-                "A side project to develop a pretty HackerNews Feed.",
-            ],
-            domains: ["javascript", "React", "Materialize"]
-        },
-        {
-            name: "Automated Time Table Generator",
-            date: "Sep 2022",
-            link: "https://github.com/d3v-26/Automatic-Time-Table-Generator",
-            description: [
-                "An automated time table generator using genetic algorithms in java.",
-            ],
-            domains: ["Java", "JavaFX", "MySQL"]
-        },
-        {
-            name: "Online Chatting",
-            date: "Sep 2022",
-            link: "https://github.com/d3v-26/Online-Chatting-Application",
-            description: [
-                "Online Chatting Application Using Angular.js",
-            ],
-            domains: ["Angular","TypeScript","SCSS"]
-        }
-    ];
-    // ["Python", "PyTorch", "Multi-modal analysis", "NLP"]["React", "javascript"]
-    const tag_colors = {
-        "javascript": "yellow-300",
-        "C++": "red-600",
-        "MinHeap": "red-500",
-        "RedBlackTree": "red-400",
-        "Java": "red-500",
-        "ASM": "blue-400",
-        "F#": "yellow-400",
-        "Distributed Principles": "blue-400",
-        "Python": "blue-500",
-        "PyTorch": "purple-500",
-        "Multi-modal analysis": "pink-600",
-        "NLP": "pink-400",
-        "React": "yellow-600",
-        "Materialize": "green-600",
-        "JavaFX": "green-200",
-        "MySQL": "gray-300",
-        "Angular": "blue-300",
-        "TypeScript": "purple-600",
-        "SCSS":"purple-400",
-        "GAN":"green-400",
-        "VAE":"green-600",
-        "Next.js":"green-200",
-        "Tailwind CSS":"gray-400",
-        "GO":"purple-600",
-        "UDP":"red-400",
-        "Audio Streaming":"pink-300",
-        "Dart":"blue-300",
-        "Node.js":"green-400",
-        "Firebase":"yellow-400",
-        "Sass":"pink-500"
+const project_list = [
+    {
+        name: "Ubuntu Themed Portfolio Website",
+        date: "Apr 2024",
+        link: "https://github.com/d3v-26/d3v-26.github.io",
+        description: [
+            "Ubuntu themed portfolio website built with Next.js and Tailwind CSS",
+        ],
+        domains: ["Next.js", "Tailwind CSS", "javascript"]
+    },
+    {
+        name: "Walkie Talkie",
+        date: "Apr 2025",
+        link: "https://github.com/d3v-26/walkie-talkie",
+        description: [
+            "Simple walkie-talkie–style application written in Go that lets users on the same local network communicate using audio.",
+        ],
+        domains: ["GO", "UDP", "Audio Streaming"]
+    },
+    {
+        name: "GatorTaxi",
+        date: "Apr 2023",
+        link: "https://github.com/d3v-26/GatorTaxi",
+        description: [
+            "Used Red-Black Trees & MinHeap for ride information storage using C++ from scratch",
+        ],
+        domains: ["C++", "MinHeap", "RedBlackTree"]
+    },
+    {
+        name: "Compact Compiler",
+        date: "Dec 2022",
+        link: "https://github.com/d3v-26/Compiler-PLP-Project",
+        description: [
+            "Implement a complete compiler using Java and ASM for a user-defined language",
+        ],
+        domains: ["Java", "ASM"]
+    },
+    {
+        name: "Distributed Concurrent Systems",
+        date: "Aug 2023",
+        link: "https://github.com/d3v-26/COP5615-Project3",
+        description: [
+            "Implemented a concurrent client-server system in F#",
+        ],
+        domains: ["F#", "Distributed Principles"]
+    },
+    {
+        name: "Intermediate task transfer learning",
+        date: "Apr 2023",
+        link: "https://drive.google.com/file/d/1qhvBs44mK5bejG8WJHAC3k9GS7XnhP6a/view?usp=share_link",
+        description: [
+            "Implemented a task transfer learning project, for sarcasm detection, using transfer learning techniques from a related tasks such as sentiment detection, humor detection, irony detection etc",
+        ],
+        domains: ["Python", "PyTorch", "Multi-modal analysis", "NLP"]
+    },
+    {
+        name: "GAN & VAE on MNIST",
+        date: "Apr 2023",
+        link: "https://github.com/d3v-26/GAN-VAE-MNIST",
+        description: [
+            "Implemented GAN and VAE on MNIST dataset.",
+        ],
+        domains: ["Python", "PyTorch", "GAN", "VAE"]
+    },
+    {
+        name: "React Boilerplate",
+        date: "Feb 2021",
+        link: "https://github.com/d3v-26/react-boilerplate",
+        description: [
+            "Boilerplate code to get you started on your react project",
+        ],
+        domains: ["React", "javascript"]
+    },
+    {
+        name: "HackerNews Feed",
+        date: "Feb 2021",
+        link: "https://github.com/d3v-26/hacker-feed",
+        description: [
+            "A side project to develop a pretty HackerNews Feed.",
+        ],
+        domains: ["javascript", "React", "Materialize"]
+    },
+    {
+        name: "Automated Time Table Generator",
+        date: "Sep 2022",
+        link: "https://github.com/d3v-26/Automatic-Time-Table-Generator",
+        description: [
+            "An automated time table generator using genetic algorithms in java.",
+        ],
+        domains: ["Java", "JavaFX", "MySQL"]
+    },
+    {
+        name: "Online Chatting",
+        date: "Sep 2022",
+        link: "https://github.com/d3v-26/Online-Chatting-Application",
+        description: [
+            "Online Chatting Application Using Angular.js",
+        ],
+        domains: ["Angular","TypeScript","SCSS"]
     }
+];
+
+const tag_colors = {
+    "javascript": "yellow-300",
+    "C++": "red-600",
+    "MinHeap": "red-500",
+    "RedBlackTree": "red-400",
+    "Java": "red-500",
+    "ASM": "blue-400",
+    "F#": "yellow-400",
+    "Distributed Principles": "blue-400",
+    "Python": "blue-500",
+    "PyTorch": "purple-500",
+    "Multi-modal analysis": "pink-600",
+    "NLP": "pink-400",
+    "React": "yellow-600",
+    "Materialize": "green-600",
+    "JavaFX": "green-200",
+    "MySQL": "gray-300",
+    "Angular": "blue-300",
+    "TypeScript": "purple-600",
+    "SCSS":"purple-400",
+    "GAN":"green-400",
+    "VAE":"green-600",
+    "Next.js":"green-200",
+    "Tailwind CSS":"gray-400",
+    "GO":"purple-600",
+    "UDP":"red-400",
+    "Audio Streaming":"pink-300",
+    "Dart":"blue-300",
+    "Node.js":"green-400",
+    "Firebase":"yellow-400",
+    "Sass":"pink-500"
+};
+
+function Projects() {
+    const [projects, setProjects] = useState(project_list);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch('https://api.github.com/users/d3v-26/repos?sort=pushed&per_page=100', {
+            headers: { Accept: 'application/vnd.github+json' }
+        })
+            .then(res => { if (!res.ok) throw new Error(); return res.json(); })
+            .then(repos => {
+                const filtered = repos
+                    .filter(r => !r.fork && r.description)
+                    .map(r => ({
+                        name: r.name.replace(/-/g, ' '),
+                        date: new Date(r.pushed_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+                        link: r.html_url,
+                        description: [r.description],
+                        domains: [...(r.topics || []), r.language].filter(Boolean),
+                    }));
+                if (filtered.length > 0) setProjects(filtered);
+            })
+            .catch(() => { /* keep static fallback */ })
+            .finally(() => setLoading(false));
+    }, []);
 
     return (
         <>
@@ -370,10 +394,12 @@ function Projects() {
                 </div>
             </div>
 
+            {loading && (
+                <div className="text-gray-400 text-sm mt-2 mb-1">fetching projects from github...</div>
+            )}
+
             {
-                project_list.map((project, index) => {
-                    const projectNameFromLink = project.link.split('/')
-                    const projectName = projectNameFromLink[projectNameFromLink.length - 1]
+                projects.map((project, index) => {
                     return (
                         <a key={index} href={project.link} target="_blank" rel="noreferrer" className="flex w-full flex-col px-4">
                             <div className="w-full py-1 px-2 my-2 border border-gray-50 border-opacity-10 rounded hover:bg-gray-50 hover:bg-opacity-5 cursor-pointer">
