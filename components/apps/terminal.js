@@ -213,6 +213,22 @@ export class Terminal extends Component {
                 let target = words[0];
                 if (target === "" || target === undefined || target === null) target = this.curr_dir_name;
 
+                if (target === "~/Desktop" || target === "~/desktop") {
+                    let dt_folders = JSON.parse(localStorage.getItem('new_folders') || '[]');
+                    if (dt_folders.length === 0) {
+                        result = "No folders on Desktop. Use 'mkdir &lt;name&gt;' to create one (limit: 10).";
+                    } else {
+                        let flist = ['<div class="flex justify-start flex-wrap items-center">'];
+                        dt_folders.forEach(f => {
+                            flist.push(`<span class="font-bold mr-3 text-ubt-blue">'${this.xss(f.name)}'</span>`);
+                        });
+                        flist.push(`<span class="text-gray-400 ml-1">(${dt_folders.length}/10)</span>`);
+                        flist.push('</div>');
+                        result = flist.join('');
+                    }
+                    break;
+                }
+
                 if (words.length > 1) {
                     result = "too many arguments, arguments must be <1.";
                     break;
@@ -229,11 +245,48 @@ export class Terminal extends Component {
                 }
                 break;
             case "mkdir":
-                if (words[0] !== undefined && words[0] !== "") {
-                    this.props.addFolder(words[0]);
-                    result = "";
+                if (rest !== "") {
+                    let mkdirErr = this.props.addFolder(rest);
+                    result = mkdirErr || "";
                 } else {
                     result = "mkdir: missing operand";
+                }
+                break;
+            case "rm":
+                if (rest === "") {
+                    result = "rm: missing operand";
+                    break;
+                }
+                {
+                    let rm_folders = JSON.parse(localStorage.getItem('new_folders') || '[]');
+                    let rm_target = rm_folders.find(f => f.name.toLowerCase() === rest.toLowerCase());
+                    if (!rm_target) {
+                        result = `rm: '${this.xss(rest)}': No such folder on Desktop`;
+                    } else {
+                        this.props.deleteFolder(`new-folder-${rm_target.id}`);
+                        result = `Removed '${this.xss(rm_target.name)}' from Desktop.`;
+                    }
+                }
+                break;
+            case "rename":
+                if (words.length < 2) {
+                    result = "rename: usage: rename &lt;old-name&gt; &lt;new-name&gt;";
+                    break;
+                }
+                {
+                    let rn_old = words[0];
+                    let rn_new = words.slice(1).join(' ');
+                    let rn_folders = JSON.parse(localStorage.getItem('new_folders') || '[]');
+                    let rn_target = rn_folders.find(f =>
+                        f.name.toLowerCase() === rn_old.toLowerCase() ||
+                        f.id === rn_old.toLowerCase().replace(/\s+/g, '-')
+                    );
+                    if (!rn_target) {
+                        result = `rename: '${this.xss(rn_old)}': No such folder on Desktop`;
+                    } else {
+                        let rn_err = this.props.renameFolder(`new-folder-${rn_target.id}`, rn_new);
+                        result = rn_err || `Renamed to '${this.xss(rn_new)}'`;
+                    }
                 }
                 break;
             case "pwd":
@@ -244,7 +297,7 @@ export class Terminal extends Component {
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("vscode");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands:[ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, ls ~/Desktop, pwd, echo, clear, exit, mkdir, rm, rename, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "echo":
@@ -254,60 +307,60 @@ export class Terminal extends Component {
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("spotify");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, ls ~/Desktop, pwd, echo, clear, exit, mkdir, rm, rename, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "chrome":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("chrome");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, ls ~/Desktop, pwd, echo, clear, exit, mkdir, rm, rename, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "todoist":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("todo-ist");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, ls ~/Desktop, pwd, echo, clear, exit, mkdir, rm, rename, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "trash":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("trash");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, ls ~/Desktop, pwd, echo, clear, exit, mkdir, rm, rename, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "about-dev":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("about-dev");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, ls ~/Desktop, pwd, echo, clear, exit, mkdir, rm, rename, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "terminal":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("terminal");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, ls ~/Desktop, pwd, echo, clear, exit, mkdir, rm, rename, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "settings":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("settings");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, ls ~/Desktop, pwd, echo, clear, exit, mkdir, rm, rename, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "sendmsg":
                 if (words[0] === "." || words.length === 0) {
                     this.props.openApp("gedit");
                 } else {
-                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
+                    result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, ls ~/Desktop, pwd, echo, clear, exit, mkdir, rm, rename, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
                 }
                 break;
             case "help":
-                result = "Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
+                result = "Available Commands: [ cd, ls, ls ~/Desktop, pwd, echo, clear, exit, mkdir, rm, rename, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
                 break;
             case "clear":
                 this.reStartTerminal();
@@ -320,7 +373,7 @@ export class Terminal extends Component {
                 result = "<img class=' w-2/5' src='./images/memes/used-sudo-command.webp' />";
                 break;
             default:
-                result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, pwd, echo, clear, exit, mkdir, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
+                result = "Command '" + main + "' not found, or not yet implemented.<br>Available Commands: [ cd, ls, ls ~/Desktop, pwd, echo, clear, exit, mkdir, rm, rename, code, spotify, chrome, about-dev, todoist, trash, settings, sendmsg ]";
         }
         document.getElementById(`row-result-${rowId}`).innerHTML = result;
         this.appendTerminalRow();
@@ -361,6 +414,6 @@ export class Terminal extends Component {
 
 export default Terminal
 
-export const displayTerminal = (addFolder, openApp) => {
-    return <Terminal addFolder={addFolder} openApp={openApp}> </Terminal>;
+export const displayTerminal = (addFolder, openApp, deleteFolder, renameFolder) => {
+    return <Terminal addFolder={addFolder} openApp={openApp} deleteFolder={deleteFolder} renameFolder={renameFolder}> </Terminal>;
 }

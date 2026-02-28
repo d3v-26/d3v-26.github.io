@@ -51,6 +51,17 @@ export class Desktop extends Component {
         }
         else {
             new_folders = JSON.parse(new_folders);
+            // Migrate old format where id had 'new-folder-' prefix — store slug only
+            let migrated = false;
+            new_folders = new_folders.map(f => {
+                if (f.id && f.id.startsWith('new-folder-')) {
+                    migrated = true;
+                    return { ...f, id: f.id.slice('new-folder-'.length) };
+                }
+                return f;
+            });
+            if (migrated) localStorage.setItem("new_folders", JSON.stringify(new_folders));
+
             new_folders.forEach(folder => {
                 apps.push({
                     id: `new-folder-${folder.id}`,
@@ -228,7 +239,9 @@ export class Desktop extends Component {
                     name: app.title,
                     id: app.id,
                     icon: app.icon,
-                    openApp: this.openApp
+                    openApp: this.openApp,
+                    deleteFolder: this.deleteFolder,
+                    renameFolder: this.renameFolder,
                 }
 
                 appsJsx.push(
@@ -249,6 +262,8 @@ export class Desktop extends Component {
                     id: app.id,
                     screen: app.screen,
                     addFolder: this.addToDesktop,
+                    deleteFolder: this.deleteFolder,
+                    renameFolder: this.renameFolder,
                     closed: this.closeApp,
                     openApp: this.openApp,
                     focus: this.focus,
@@ -444,9 +459,20 @@ export class Desktop extends Component {
 
     addToDesktop = (folder_name) => {
         folder_name = folder_name.trim();
-        let folder_id = folder_name.replace(/\s+/g, '-').toLowerCase();
+        if (!folder_name) return 'mkdir: folder name cannot be empty';
+
+        var new_folders = JSON.parse(localStorage.getItem('new_folders'));
+        if (new_folders.length >= 10) {
+            return 'Folder limit of 10 reached. Delete a folder first.';
+        }
+
+        let slug = folder_name.replace(/\s+/g, '-').toLowerCase();
+        if (new_folders.some(f => f.id === slug || f.name.toLowerCase() === folder_name.toLowerCase())) {
+            return `mkdir: '${folder_name}': already exists`;
+        }
+
         apps.push({
-            id: `new-folder-${folder_id}`,
+            id: `new-folder-${slug}`,
             title: folder_name,
             icon: './themes/Yaru/system/folder.png',
             disabled: true,
@@ -454,12 +480,41 @@ export class Desktop extends Component {
             desktop_shortcut: true,
             screen: () => { },
         });
-        // store in local storage
-        var new_folders = JSON.parse(localStorage.getItem('new_folders'));
-        new_folders.push({ id: `new-folder-${folder_id}`, name: folder_name });
+        new_folders.push({ id: slug, name: folder_name });
         localStorage.setItem("new_folders", JSON.stringify(new_folders));
 
         this.setState({ showNameBar: false }, this.updateAppsData);
+        return null;
+    }
+
+    deleteFolder = (folder_id) => {
+        const idx = apps.findIndex(a => a.id === folder_id);
+        if (idx !== -1) apps.splice(idx, 1);
+
+        const slug = folder_id.replace(/^new-folder-/, '');
+        var new_folders = JSON.parse(localStorage.getItem('new_folders'));
+        new_folders = new_folders.filter(f => f.id !== slug);
+        localStorage.setItem('new_folders', JSON.stringify(new_folders));
+
+        this.updateAppsData();
+    }
+
+    renameFolder = (folder_id, new_name) => {
+        new_name = new_name.trim();
+        if (!new_name) return 'rename: new name cannot be empty';
+
+        const app = apps.find(a => a.id === folder_id);
+        if (!app) return 'rename: folder not found';
+        app.title = new_name;
+
+        const slug = folder_id.replace(/^new-folder-/, '');
+        var new_folders = JSON.parse(localStorage.getItem('new_folders'));
+        const folder = new_folders.find(f => f.id === slug);
+        if (folder) folder.name = new_name;
+        localStorage.setItem('new_folders', JSON.stringify(new_folders));
+
+        this.updateAppsData();
+        return null;
     }
 
     showAllApps = () => { this.setState({ allAppsView: !this.state.allAppsView }) }
@@ -467,7 +522,12 @@ export class Desktop extends Component {
     renderNameBar = () => {
         let addFolder = () => {
             let folder_name = document.getElementById("folder-name-input").value;
-            this.addToDesktop(folder_name);
+            let err = this.addToDesktop(folder_name);
+            if (err) {
+                let input = document.getElementById("folder-name-input");
+                input.value = '';
+                input.placeholder = err;
+            }
         }
 
         let removeCard = () => {
