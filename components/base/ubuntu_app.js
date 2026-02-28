@@ -76,7 +76,7 @@ export class UbuntuApp extends Component {
                 onContextMenu={this.handleContextMenu}
                 tabIndex={0}
             >
-                <img width="40px" height="40px" className="mb-1 w-10" src={this.props.icon} alt={"Ubuntu " + this.props.name} />
+                <img width="40px" height="40px" draggable="false" className="mb-1 w-10" src={this.props.icon} alt={"Ubuntu " + this.props.name} />
                 {this.state.isRenaming ? (
                     <input
                         autoFocus
