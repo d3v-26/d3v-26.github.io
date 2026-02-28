@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Draggable from 'react-draggable';
 import BackgroundImage from '../util components/background-image';
 import SideBar from './side_bar';
 import apps from '../../apps.config';
@@ -30,6 +31,7 @@ export class Desktop extends Component {
                 default: false,
             },
             showNameBar: false,
+            folder_positions: {},
         }
     }
 
@@ -75,6 +77,14 @@ export class Desktop extends Component {
             });
             this.updateAppsData();
         }
+
+        // Load saved folder positions
+        try {
+            const saved = JSON.parse(localStorage.getItem('folder_positions') || '{}');
+            this.setState({ folder_positions: saved });
+        } catch (_) {
+            this.setState({ folder_positions: {} });
+        }
     }
 
     setEventListeners = () => {
@@ -110,14 +120,19 @@ export class Desktop extends Component {
         let { posx, posy } = this.getMenuPosition(e);
         let contextMenu = document.getElementById(`${menuName}-menu`);
 
-        if (posx + $(contextMenu).width() > window.innerWidth) posx -= $(contextMenu).width();
-        if (posy + $(contextMenu).height() > window.innerHeight) posy -= $(contextMenu).height();
+        // Measure dimensions while hidden using visibility:hidden so layout is calculated
+        contextMenu.style.visibility = 'hidden';
+        contextMenu.style.display = 'block';
+        let menuWidth = contextMenu.offsetWidth;
+        let menuHeight = contextMenu.offsetHeight;
+        contextMenu.style.display = '';
+        contextMenu.style.visibility = '';
 
-        posx = posx.toString() + "px";
-        posy = posy.toString() + "px";
+        if (posx + menuWidth > window.innerWidth) posx -= menuWidth;
+        if (posy + menuHeight > window.innerHeight) posy -= menuHeight;
 
-        contextMenu.style.left = posx;
-        contextMenu.style.top = posy;
+        contextMenu.style.left = posx + 'px';
+        contextMenu.style.top = posy + 'px';
 
         this.setState({ context_menus: { ...this.state.context_menus, [menuName]: true } });
     }
@@ -244,12 +259,32 @@ export class Desktop extends Component {
                     renameFolder: this.renameFolder,
                 }
 
-                appsJsx.push(
-                    <UbuntuApp key={index} {...props} />
-                );
+                if (app.id.startsWith('new-folder-')) {
+                    appsJsx.push(
+                        <Draggable
+                            key={index}
+                            defaultPosition={this.state.folder_positions[app.id] || { x: 0, y: 0 }}
+                            onStop={(e, data) => this.saveFolderPosition(app.id, { x: data.x, y: data.y })}
+                        >
+                            <div style={{ display: 'inline-block' }}>
+                                <UbuntuApp {...props} />
+                            </div>
+                        </Draggable>
+                    );
+                } else {
+                    appsJsx.push(
+                        <UbuntuApp key={index} {...props} />
+                    );
+                }
             }
         });
         return appsJsx;
+    }
+
+    saveFolderPosition = (folder_id, pos) => {
+        const folder_positions = { ...this.state.folder_positions, [folder_id]: pos };
+        localStorage.setItem('folder_positions', JSON.stringify(folder_positions));
+        this.setState({ folder_positions });
     }
 
     renderWindows = () => {
@@ -495,6 +530,12 @@ export class Desktop extends Component {
         var new_folders = JSON.parse(localStorage.getItem('new_folders'));
         new_folders = new_folders.filter(f => f.id !== slug);
         localStorage.setItem('new_folders', JSON.stringify(new_folders));
+
+        // Remove saved position
+        const folder_positions = { ...this.state.folder_positions };
+        delete folder_positions[folder_id];
+        localStorage.setItem('folder_positions', JSON.stringify(folder_positions));
+        this.setState({ folder_positions });
 
         this.updateAppsData();
     }

@@ -8,6 +8,8 @@ export class UbuntuApp extends Component {
             showMenu: false,
             isRenaming: false,
             newName: '',
+            menuAbove: false,
+            menuRight: false,
         };
     }
 
@@ -27,7 +29,11 @@ export class UbuntuApp extends Component {
         if (!this.isUserFolder()) return;
         e.preventDefault();
         e.stopPropagation();
-        this.setState({ showMenu: true });
+        const rect = e.currentTarget.getBoundingClientRect();
+        // Menu is ~96px wide (w-24) and ~64px tall; flip if it would overflow
+        const menuAbove = rect.bottom + 64 > window.innerHeight;
+        const menuRight = rect.left - 48 + 96 > window.innerWidth;
+        this.setState({ showMenu: true, menuAbove, menuRight });
         document.addEventListener('click', this.closeMenu);
     }
 
@@ -84,7 +90,11 @@ export class UbuntuApp extends Component {
                 ) : this.props.name}
                 {this.state.showMenu && (
                     <div
-                        className="absolute top-full left-1/2 transform -translate-x-1/2 z-50 bg-gray-900 border border-gray-700 rounded shadow-lg text-xs w-24"
+                        className={
+                            "absolute z-50 bg-gray-900 border border-gray-700 rounded shadow-lg text-xs w-24 " +
+                            (this.state.menuAbove ? "bottom-full " : "top-full ") +
+                            (this.state.menuRight ? "right-0 " : "left-1/2 transform -translate-x-1/2 ")
+                        }
                         onClick={e => e.stopPropagation()}
                     >
                         <div onClick={this.handleRenameStart} className="px-3 py-1.5 hover:bg-gray-700 cursor-default text-left">Rename</div>
