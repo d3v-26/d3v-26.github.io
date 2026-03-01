@@ -151,7 +151,6 @@ const apps = [
         disabled: false,
         favourite: false,
         desktop_shortcut: true,
-        isLink: true,
         screen: openResume,
     },
     {
