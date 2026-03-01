@@ -44,10 +44,12 @@ export class Desktop extends Component {
         this.setContextListeners();
         this.setEventListeners();
         this.checkForNewFolders();
+        document.addEventListener('activities-click', this.showAllApps);
     }
 
     componentWillUnmount() {
         this.removeContextListeners();
+        document.removeEventListener('activities-click', this.showAllApps);
     }
 
     checkForNewFolders = () => {
