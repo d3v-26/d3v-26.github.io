@@ -7,6 +7,7 @@ import { displayTrash } from './components/apps/trash';
 import { displayGedit } from './components/apps/gedit';
 import { displayAboutDev } from './components/apps/dev';
 import { displayTerminalCalc } from './components/apps/calc';
+import { displayAfectiveMvpa } from './components/apps/affective-mvpa';
 
 const openLinkedIn = () => {
     window.open('https://www.linkedin.com/in/dev-patel26/', '_blank');
@@ -23,8 +24,15 @@ const openCacheUp = () => {
 const openResume = () => {
     localStorage.setItem('about-section', 'resume');
     return displayAboutDev();
+};
 
-}
+const openDocumentEverything = () => {
+    window.open('https://github.com/d3v-26/document-everything', '_blank');
+};
+
+const openNotemark = () => {
+    window.open('https://github.com/d3v-26/notemark', '_blank');
+};
   
 
 const apps = [
@@ -141,13 +149,42 @@ const apps = [
     {
         id: "resume",
         title: "Resume",
-        icon: './themes/Yaru/apps/gedit.png',
+        icon: './themes/Yaru/apps/resume.svg',
         disabled: false,
         favourite: false,
         desktop_shortcut: true,
         isLink: true,
         screen: openResume,
-    }
+    },
+    {
+        id: "affective-mvpa",
+        title: "Affective MVPA",
+        icon: './themes/Yaru/apps/mvpa.svg',
+        disabled: false,
+        favourite: true,
+        desktop_shortcut: true,
+        screen: displayAfectiveMvpa,
+    },
+    {
+        id: "document-everything",
+        title: "Document Everything",
+        icon: './themes/Yaru/apps/code-docs.svg',
+        disabled: false,
+        favourite: true,
+        desktop_shortcut: false,
+        isLink: true,
+        screen: openDocumentEverything,
+    },
+    {
+        id: "notemark",
+        title: "Notemark",
+        icon: './themes/Yaru/apps/notemark.svg',
+        disabled: false,
+        favourite: true,
+        desktop_shortcut: false,
+        isLink: true,
+        screen: openNotemark,
+    },
 ]
 
 export default apps;
