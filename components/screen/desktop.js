@@ -379,18 +379,11 @@ export class Desktop extends Component {
     openApp = (objId) => {
         // if the app is disabled
         if (this.state.disabled_apps[objId]) return;
-        if(objId === "github") {
-            window.open('https://github.com/d3v-26', '_blank');
-            return;
-        }
 
-        if (objId === "linkedin") {
-            window.open('https://www.linkedin.com/in/dev-patel26/', '_blank');
-            return;
-        }
-
-        if (objId === "cacheup") {  
-            window.open('https://cacheup.tech', '_blank');
+        // Generic handler for all link apps — call screen() and don't create a window
+        const app = apps.find(a => a.id === objId);
+        if (app?.isLink) {
+            app.screen();
             return;
         }
 

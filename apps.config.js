@@ -8,6 +8,7 @@ import { displayGedit } from './components/apps/gedit';
 import { displayAboutDev } from './components/apps/dev';
 import { displayTerminalCalc } from './components/apps/calc';
 import { displayAfectiveMvpa } from './components/apps/affective-mvpa';
+import { displayNotemark } from './components/apps/notemark';
 
 const openLinkedIn = () => {
     window.open('https://www.linkedin.com/in/dev-patel26/', '_blank');
@@ -30,10 +31,6 @@ const openDocumentEverything = () => {
     window.open('https://github.com/d3v-26/document-everything', '_blank');
 };
 
-const openNotemark = () => {
-    window.open('https://github.com/d3v-26/notemark', '_blank');
-};
-  
 
 const apps = [
     {
@@ -144,12 +141,13 @@ const apps = [
         disabled: false,
         favourite: false,
         desktop_shortcut: true,
+        isLink: true,
         screen: openCacheUp,
     },
     {
         id: "resume",
         title: "Resume",
-        icon: './themes/Yaru/apps/resume.svg',
+        icon: './themes/Yaru/apps/resume.png',
         disabled: false,
         favourite: false,
         desktop_shortcut: true,
@@ -159,7 +157,7 @@ const apps = [
     {
         id: "affective-mvpa",
         title: "Affective MVPA",
-        icon: './themes/Yaru/apps/mvpa.svg',
+        icon: './themes/Yaru/apps/mvpa.png',
         disabled: false,
         favourite: true,
         desktop_shortcut: true,
@@ -168,7 +166,7 @@ const apps = [
     {
         id: "document-everything",
         title: "Document Everything",
-        icon: './themes/Yaru/apps/code-docs.svg',
+        icon: './themes/Yaru/apps/code-docs.png',
         disabled: false,
         favourite: true,
         desktop_shortcut: false,
@@ -182,8 +180,7 @@ const apps = [
         disabled: false,
         favourite: true,
         desktop_shortcut: false,
-        isLink: true,
-        screen: openNotemark,
+        screen: displayNotemark,
     },
 ]
 
