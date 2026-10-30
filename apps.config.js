@@ -9,6 +9,7 @@ import { displayAboutDev } from './components/apps/dev';
 import { displayTerminalCalc } from './components/apps/calc';
 import { displayAfectiveMvpa } from './components/apps/affective-mvpa';
 import { displayNotemark } from './components/apps/notemark';
+import { displayCrown, displayCrownDicom } from './components/apps/crown';
 
 const openLinkedIn = () => {
     window.open('https://www.linkedin.com/in/dev-patel26/', '_blank');
@@ -75,7 +76,7 @@ const apps = [
         icon: './themes/Yaru/apps/bash.png',
         disabled: false,
         favourite: true,
-        desktop_shortcut: false,
+        desktop_shortcut: true,
         screen: displayTerminal,
     },
     {
@@ -178,8 +179,26 @@ const apps = [
         icon: './themes/Yaru/apps/notemark.svg',
         disabled: false,
         favourite: true,
-        desktop_shortcut: false,
+        desktop_shortcut: true,
         screen: displayNotemark,
+    },
+    {
+        id: "crown",
+        title: "CROWN",
+        icon: './themes/Yaru/apps/crown.svg',
+        disabled: false,
+        favourite: false,
+        desktop_shortcut: true,
+        screen: displayCrown,
+    },
+    {
+        id: "crown-dicom",
+        title: "CROWN DICOM",
+        icon: './themes/Yaru/apps/crown-dicom.svg',
+        disabled: false,
+        favourite: false,
+        desktop_shortcut: true,
+        screen: displayCrownDicom,
     },
 ]
 

@@ -620,7 +620,8 @@ export class Desktop extends Component {
                 { this.state.allAppsView ?
                     <AllApplications apps={apps}
                         recentApps={this.app_stack}
-                        openApp={this.openApp} /> : null}
+                        openApp={this.openApp}
+                        closeApps={() => this.setState({ allAppsView: false })} /> : null}
 
             </div>
         )

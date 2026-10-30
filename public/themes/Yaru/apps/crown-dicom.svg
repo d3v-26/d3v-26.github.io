@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#1C71D8"/>
+  <path d="M18 24 L20 12 L26 18 L32 10 L38 18 L44 12 L46 24 Z" fill="#F5C211"/>
+  <rect x="14" y="29" width="36" height="25" rx="3" fill="none" stroke="white" stroke-width="3"/>
+  <text x="32" y="47" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="white">DCM</text>
+</svg>

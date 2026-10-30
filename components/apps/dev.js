@@ -15,9 +15,11 @@ export class AboutDev extends Component {
     componentDidMount() {
         this.screens = {
             "about": <About />,
+            "experience": <Experience />,
             "education": <Education />,
             "skills": <Skills />,
             "projects": <Projects />,
+            "publications": <Publications />,
             "resume": <Resume />,
         }
 
@@ -53,6 +55,10 @@ export class AboutDev extends Component {
                     <img className=" w-3 md:w-4" alt="about dev" src="./themes/Yaru/status/about.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">About Me</span>
                 </div>
+                <div id="experience" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "experience" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                    <img className=" w-3 md:w-4" alt="Dev's experience" src="./themes/Yaru/status/experience.svg" />
+                    <span className=" ml-1 md:ml-2 text-gray-50 ">Experience</span>
+                </div>
                 <div id="education" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "education" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
                     <img className=" w-3 md:w-4" alt="Dev's education" src="./themes/Yaru/status/education.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Education</span>
@@ -64,6 +70,10 @@ export class AboutDev extends Component {
                 <div id="projects" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "projects" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
                     <img className=" w-3 md:w-4" alt="Dev's projects" src="./themes/Yaru/status/projects.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Projects</span>
+                </div>
+                <div id="publications" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "publications" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                    <img className=" w-3 md:w-4" alt="Dev's publications" src="./themes/Yaru/status/contact.svg" />
+                    <span className=" ml-1 md:ml-2 text-gray-50 ">Publications</span>
                 </div>
                 <div id="resume" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "resume" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
                     <img className=" w-3 md:w-4" alt="Dev's resume" src="./themes/Yaru/status/download.svg" />
@@ -111,9 +121,9 @@ function About() {
             <div className="mt-4 md:mt-8 text-lg md:text-2xl text-center px-1">
                 <div>Hi, I'm <span className="font-bold">Dev Patel</span></div>
                 <div className="font-normal mt-1">
-                    <span className="text-pink-600 font-bold">Full Stack Engineer</span>
+                    <span className="text-pink-600 font-bold">Software Engineer</span>
                     <span className="text-gray-400 font-light"> · </span>
-                    <span className="text-ubt-gedit-orange font-semibold">ML Enthusiast</span>
+                    <span className="text-ubt-gedit-orange font-semibold">ML Systems</span>
                 </div>
             </div>
             <div className="mt-4 relative md:my-6 pt-px bg-white w-32 md:w-48">
@@ -122,17 +132,99 @@ function About() {
             </div>
             <ul className="mt-2 leading-tight tracking-tight text-sm md:text-base w-5/6 md:w-3/4 emoji-list">
                 <li className="list-pc">
-                    <span className="font-medium">MS Computer Science</span> from the University of Florida <span className="text-gray-400">(GPA 3.8/4.0)</span> with <span className="font-medium">2+ years of industry experience</span> shipping production-grade full-stack systems. Actively seeking full-time Software Engineer roles — <a className="text-ubt-gedit-orange underline" href="mailto:devrpatel26@gmail.com">devrpatel26@gmail.com</a>
+                    Currently a <span className="font-medium">Research Assistant at SMILE Lab, Vanderbilt University</span>, building software & ML systems for neuroimaging research. <span className="font-medium">MS Computer Science</span> from the University of Florida <span className="text-gray-400">(GPA 3.8/4.0)</span>. Open to full-time Software Engineer roles — <a className="text-ubt-gedit-orange underline" href="mailto:devrpatel26@gmail.com">devrpatel26@gmail.com</a>
                 </li>
                 <li className="mt-3 list-building">
-                    I build end-to-end — <span className="font-medium">React / Next.js</span> frontends, <span className="font-medium">Node.js / Go</span> backends, and <span className="font-medium">ML pipelines</span> with PyTorch. I care as much about DX and clean architecture as I do about shipping fast.
+                    I build end-to-end — <span className="font-medium">FastAPI / Node.js</span> backends, <span className="font-medium">React / Next.js</span> frontends, <span className="font-medium">Redis-backed multi-GPU inference</span>, and the <span className="font-medium">Docker / K3s / ArgoCD</span> infra underneath. Lead developer of <a className="text-ubt-gedit-orange underline" href="https://crown-toolkit.vercel.app/" target="_blank" rel="noreferrer">CROWN</a>, a browser-based whole-head MRI segmentation platform.
                 </li>
                 <li className="mt-3 list-star">
-                    Passionate about bridging <span className="font-medium text-ubt-gedit-orange">AI research and real-world products</span> — NLP, computer vision, and generative models are my playground. Also obsessed with crafting delightful UI/UX (this portfolio is exhibit A).
+                    Passionate about bridging <span className="font-medium text-ubt-gedit-orange">AI research and real-world products</span> — medical imaging, generative models, and LLM tooling are my playground. Also obsessed with crafting delightful UI/UX (this portfolio is exhibit A).
                 </li>
                 <li className="mt-3 list-time">
                     Off the keyboard: Elden Ring ⚔️, GTA V, Call of Duty, Formula 1 🏎️, and <a className="underline" href="https://www.youtube.com/@Sidemen" target="_blank" rel="noreferrer">Sidemen</a> marathons. Sometimes a book, if the game servers are down.
                 </li>
+            </ul>
+        </>
+    )
+}
+const experience_list = [
+    {
+        role: "Research Assistant · Software & ML Systems",
+        org: "SMILE Lab, Vanderbilt University",
+        location: "Nashville, TN",
+        date: "2026 – Present",
+        points: [
+            "Built a FLUX.1/FLUX.2 pipeline with text/image embeddings, OpenAI APIs, and multi-agent orchestration for reproducible generation of controlled emotion-study stimuli.",
+            "Standardized fMRI preprocessing comparisons across SPM, fMRIPrep, and DeepPrep with workflows for decoding, LPP, and RSA analyses aligned with EEG experiments.",
+            "Designed the Center of Intelligent Imaging website and lab blogs for technical and non-technical audiences.",
+        ],
+        tags: ["FLUX", "OpenAI", "Multi-agent", "fMRI", "Python"]
+    },
+    {
+        role: "Research Assistant · Backend & ML Platform Engineering",
+        org: "SMILE Lab, University of Florida",
+        location: "Gainesville, FL",
+        date: "Dec 2024 – 2026",
+        points: [
+            "Built CROWN, a FastAPI/Next.js platform for 11-tissue analysis — whole-head MRI segmentation in 10–60 seconds and end-to-end TES modeling in under 35 minutes.",
+            "Designed Redis-backed multi-GPU orchestration, persistent job state, SSE progress streaming, and the crown-cli package for concurrent inference across 6 GRACE/DOMINO model variants.",
+        ],
+        tags: ["FastAPI", "Next.js", "Redis", "Multi-GPU", "SSE"]
+    },
+    {
+        role: "Software Developer · Mobile, Search & Data Platform",
+        org: "Indian Institute of Technology Bombay",
+        location: "Mumbai, India",
+        date: "Dec 2021 – May 2022",
+        points: [
+            "Developed a Flutter Android/iOS app backed by Flask, Docker, and GCP serving 50,000+ vocabulary entries across 3 languages.",
+            "Cut search p95 latency by 30% across 4 multilingual corpora with a MySQL inverted index and optimized Python ETL, schemas, and queries.",
+            "Prototyped predictive-text and learning-analytics features, increasing lesson completion and understanding by 40%.",
+        ],
+        tags: ["Flutter", "Flask", "MySQL", "GCP", "Docker"]
+    },
+    {
+        role: "Software Developer · Backend & Cloud Infrastructure",
+        org: "Bharat Tyres Pvt. Ltd.",
+        location: "Anand, India",
+        date: "Sep 2020 – Sep 2021",
+        points: [
+            "Built Node.js/Next.js services on AWS EC2/ALB/RDS with PostgreSQL and Redis caching — 40% lower API p95 latency, 20% higher throughput.",
+            "Implemented Docker/Kubernetes zero-downtime CI/CD and JWT/OAuth 2.0 service auth, reducing production downtime by 30%.",
+        ],
+        tags: ["Node.js", "AWS", "PostgreSQL", "Kubernetes", "OAuth 2.0"]
+    },
+];
+
+function Experience() {
+    return (
+        <>
+            <div className="font-medium relative text-2xl mt-2 md:mt-4 mb-4">
+                Experience
+                <div className="absolute pt-px bg-white mt-px top-full w-full">
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
+                </div>
+            </div>
+            <ul className="w-10/12 mt-4 ml-4 px-0 md:px-1 space-y-6">
+                {experience_list.map((exp, index) => (
+                    <li key={index} className="list-disc">
+                        <div className="flex flex-wrap justify-between items-baseline">
+                            <div className="text-lg md:text-xl text-left font-bold leading-tight mr-2">{exp.org}</div>
+                            <div className="text-gray-300 font-light text-sm">{exp.date}</div>
+                        </div>
+                        <div className="text-sm text-ubt-gedit-orange font-medium mt-0.5">{exp.role}</div>
+                        <div className="text-xs text-gray-400 mt-0.5">{exp.location}</div>
+                        <ul className="tracking-normal leading-tight text-sm font-light ml-4 mt-2">
+                            {exp.points.map((point, i) => <li key={i} className="list-disc mt-1 text-gray-100">{point}</li>)}
+                        </ul>
+                        <div className="flex flex-wrap gap-1 mt-2">
+                            {exp.tags.map(t => (
+                                <span key={t} className="px-2 py-0.5 bg-gray-700 bg-opacity-60 rounded text-xs text-gray-200">{t}</span>
+                            ))}
+                        </div>
+                    </li>
+                ))}
             </ul>
         </>
     )
@@ -152,7 +244,7 @@ function Education() {
                     <div className="text-lg md:text-xl text-left font-bold leading-tight">
                         University of Florida
                     </div>
-                    <div className="text-sm text-gray-400 mt-0.5">Master of Science · Computer Science · 2022 – 2024</div>
+                    <div className="text-sm text-gray-400 mt-0.5">Master of Science · Computer Science · Aug 2022 – May 2024</div>
                     <div className="text-sm text-green-400 font-semibold mt-1">GPA 3.8 / 4.0</div>
                     <div className="mt-2 text-xs text-gray-300 font-medium uppercase tracking-wide">Relevant Coursework</div>
                     <div className="flex flex-wrap gap-1 mt-1">
@@ -165,7 +257,7 @@ function Education() {
                     <div className="text-lg md:text-xl text-left font-bold leading-tight">
                         Dharmsinh Desai University
                     </div>
-                    <div className="text-sm text-gray-400 mt-0.5">Bachelor of Technology · Computer Engineering · 2018 – 2022</div>
+                    <div className="text-sm text-gray-400 mt-0.5">Bachelor of Engineering · Computer Engineering · Aug 2018 – May 2022</div>
                     <div className="text-sm text-green-400 font-semibold mt-1">CGPA 8.9 / 10</div>
                     <div className="mt-2 text-xs text-gray-300 font-medium uppercase tracking-wide">Relevant Coursework</div>
                     <div className="flex flex-wrap gap-1 mt-1">
@@ -205,6 +297,7 @@ function Skills() {
                     <img className="m-0.5" src="https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white" alt="TypeScript" />
                     <img className="m-0.5" src="http://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=ffffff" alt="Python" />
                     <img className="m-0.5" src="https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white" alt="Go" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/SQL-4479A1?style=flat&logo=postgresql&logoColor=white" alt="SQL" />
                     <img className="m-0.5" src="https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white" alt="Java" />
                     <img className="m-0.5" src="https://img.shields.io/badge/C%2B%2B-00599C?style=flat&logo=c%2B%2B&logoColor=white" alt="C++" />
                     <img className="m-0.5" src="https://img.shields.io/badge/Dart-0175C2?style=flat&logo=dart&logoColor=white" alt="Dart" />
@@ -223,9 +316,11 @@ function Skills() {
                     <img className="m-0.5" src="https://img.shields.io/badge/Flutter-02569B?style=flat&logo=flutter&logoColor=white" alt="Flutter" />
                     <img className="m-0.5" src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
                     <img className="m-0.5" src="https://img.shields.io/badge/-Nodejs-339933?style=flat&logo=Node.js&logoColor=ffffff" alt="Node.js" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white" alt="FastAPI" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white" alt="Flask" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white" alt="Express" />
                     <img className="m-0.5" src="https://img.shields.io/badge/Redux-593D88?style=flat&logo=redux&logoColor=white" alt="Redux" />
                     <img className="m-0.5" src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white" alt="PyTorch" />
-                    <img className="m-0.5" src="https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jquery&logoColor=white" alt="jQuery" />
                 </div>
             </div>
 
@@ -238,13 +333,113 @@ function Skills() {
                     <img className="m-0.5" src="https://img.shields.io/badge/-Firebase-FFCA28?style=flat&logo=firebase&logoColor=ffffff" alt="Firebase" />
                     <img className="m-0.5" src="https://img.shields.io/badge/MySQL-00000F?style=flat&logo=mysql&logoColor=white" alt="MySQL" />
                     <img className="m-0.5" src="https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Redis-DC382D?style=flat&logo=redis&logoColor=white" alt="Redis" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white" alt="MongoDB" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Pinecone-000000?style=flat&logo=pinecone&logoColor=white" alt="Pinecone" />
                     <img className="m-0.5" src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" alt="Docker" />
                     <img className="m-0.5" src="http://img.shields.io/badge/-Linux-0078D6?style=flat&logo=linux&logoColor=ffffff" alt="Linux" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Kubernetes%20%2F%20K3s-326CE5?style=flat&logo=kubernetes&logoColor=white" alt="Kubernetes" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Ansible-EE0000?style=flat&logo=ansible&logoColor=white" alt="Ansible" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/ArgoCD-EF7B4D?style=flat&logo=argo&logoColor=white" alt="ArgoCD" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazonwebservices&logoColor=white" alt="AWS" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/GCP-4285F4?style=flat&logo=googlecloud&logoColor=white" alt="GCP" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Azure-0078D4?style=flat&logo=microsoftazure&logoColor=white" alt="Azure" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Nginx-009639?style=flat&logo=nginx&logoColor=white" alt="Nginx" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Raspberry_Pi-A22846?style=flat&logo=raspberrypi&logoColor=white" alt="Raspberry Pi" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Pytest-0A9EDC?style=flat&logo=pytest&logoColor=white" alt="Pytest" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/Sentry-362D59?style=flat&logo=sentry&logoColor=white" alt="Sentry" />
+                    <img className="m-0.5" src="https://img.shields.io/badge/OpenTelemetry-000000?style=flat&logo=opentelemetry&logoColor=white" alt="OpenTelemetry" />
                 </div>
             </div>
         </>
     )
 }
+
+// Featured projects — always shown first, above the live GitHub feed
+const featured_projects = [
+    {
+        name: "CROWN — MRI Segmentation Suite",
+        date: "2026",
+        link: "https://crown-toolkit.vercel.app/",
+        repo: "CROWN",
+        description: [
+            "Comprehensive Reconstruction Of Whole-head Neuromodulation: browser-based platform for automated 11-tissue whole-head MRI segmentation (10–60 s) and individualized tDCS current density modeling.",
+            "FastAPI/Next.js app with Redis-backed multi-GPU orchestration across 6 GRACE/DOMINO model variants, SSE progress streaming, and the crown-cli package.",
+        ],
+        domains: ["FastAPI", "Next.js", "Redis", "PyTorch", "Medical Imaging"]
+    },
+    {
+        name: "CROWN DICOM → NIfTI",
+        date: "Oct 2026",
+        link: "https://crown-dicom.vercel.app/",
+        repo: "crown-dicom",
+        description: [
+            "Fully in-browser DICOM to NIfTI converter for CROWN using dcm2niix compiled to WebAssembly — patient data never leaves the machine.",
+            "Series picker, de-identification options, JSON sidecars, and a built-in radiological slice viewer.",
+        ],
+        domains: ["WebAssembly", "dcm2niix", "JavaScript", "DICOM"]
+    },
+    {
+        name: "medllm",
+        date: "Oct 2026",
+        link: "https://github.com/d3v-26/medllm",
+        repo: "medllm",
+        description: [
+            "Share medical vision-language models (MedGemma, Lingshu, Qwen3-VL) on a multi-GPU machine with vLLM: free-GPU serving, idle shutdown, chat CLI, and a local API.",
+        ],
+        domains: ["Python", "vLLM", "Multi-GPU", "LLM"]
+    },
+    {
+        name: "RecallKit",
+        date: "Jul 2026",
+        link: "http://pateldev.tech/RecallKit/",
+        repo: "RecallKit",
+        description: [
+            "Local-first search engine for images, documents, tables, ebooks, audio, and video.",
+        ],
+        domains: ["TypeScript", "Search", "Local-first"]
+    },
+    {
+        name: "AutoWiki",
+        date: "Jul 2026",
+        link: "http://pateldev.tech/AutoWiki/",
+        repo: "AutoWiki",
+        description: [
+            "Turn any repository into a hosted architecture wiki on GitHub Pages.",
+        ],
+        domains: ["TypeScript", "LLM", "GitHub Pages"]
+    },
+    {
+        name: "Cache Up",
+        date: "Jul 2026",
+        link: "http://pateldev.tech/cache-up-lite/",
+        repo: "cache-up-lite",
+        description: [
+            "FastAPI/Next.js summarization and search system for Hacker News sustaining 100+ req/s at 99.9% uptime on a Raspberry Pi, with Pinecone vector search, MCP, and Sentry monitoring.",
+        ],
+        domains: ["FastAPI", "Next.js", "PostgreSQL", "Pinecone", "MCP"]
+    },
+    {
+        name: "Affective MVPA Replication",
+        date: "Jul 2026",
+        link: "https://pateldev.tech/affective-mvpa-replication/",
+        repo: "affective-mvpa-replication",
+        description: [
+            "Replication of Bo et al. (2021) — decoding neural representations of affective scenes in retinotopic visual cortex.",
+        ],
+        domains: ["Python", "fMRI", "MVPA", "Neuroscience"]
+    },
+    {
+        name: "ADDiffusion",
+        date: "May 2026",
+        link: "https://github.com/d3v-26/addiffusion",
+        repo: "addiffusion",
+        description: [
+            "Adaptive agent-based inference for diffusion models.",
+        ],
+        domains: ["Python", "PyTorch", "Diffusion", "Agents"]
+    },
+];
 
 const project_list = [
     {
@@ -379,7 +574,7 @@ function tagColor(tag) {
 }
 
 function Projects() {
-    const [projects, setProjects] = useState(project_list);
+    const [projects, setProjects] = useState([...featured_projects, ...project_list]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -388,8 +583,9 @@ function Projects() {
         })
             .then(res => { if (!res.ok) throw new Error(); return res.json(); })
             .then(repos => {
+                const featuredRepos = new Set(featured_projects.map(p => p.repo.toLowerCase()));
                 const filtered = repos
-                    .filter(r => !r.fork && r.description)
+                    .filter(r => !r.fork && r.description && !featuredRepos.has(r.name.toLowerCase()))
                     .map(r => ({
                         name: r.name.replace(/-/g, ' '),
                         date: new Date(r.pushed_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
@@ -397,7 +593,7 @@ function Projects() {
                         description: [r.description],
                         domains: [...(r.topics || []), r.language].filter(Boolean),
                     }));
-                if (filtered.length > 0) setProjects(filtered);
+                if (filtered.length > 0) setProjects([...featured_projects, ...filtered]);
             })
             .catch(() => { /* keep static fallback */ })
             .finally(() => setLoading(false));
@@ -425,6 +621,7 @@ function Projects() {
                                 <div className="flex flex-wrap justify-between items-center">
                                     <div className='flex justify-center items-center'>
                                         <div className=" text-base md:text-lg mr-2">{project.name.toLowerCase()}</div>
+                                        {project.repo && <span className="px-1.5 py-px text-xs rounded bg-ub-orange text-white">featured</span>}
                                     </div>
                                     <div className="text-gray-300 font-light text-sm">{project.date}</div>
                                 </div>
@@ -446,6 +643,46 @@ function Projects() {
                     )
                 })
             }
+        </>
+    )
+}
+const publication_list = [
+    {
+        authors: "Acharya, C. K., Patel, D. R., et al.",
+        year: "2026",
+        title: "Comprehensive Reconstruction Of Whole-head Neuromodulation (CROWN): A Browser-Based Platform for Automated 11-Tissue MRI Segmentation and Individualized tDCS Current Density Modeling.",
+        venue: "Accepted abstract, 2026 NYC Neuromodulation Conference",
+        link: "https://crown-toolkit.vercel.app/",
+    },
+    {
+        authors: "Stolte, S. E., Busch, T. A., Acharya, C. K., Patel, D. R., et al.",
+        year: "2026",
+        title: "GATOR-JMAPS: A Fully Automated tDCS Modeling Tool for Older Adults.",
+        venue: "Accepted abstract and oral highlight, 2026 NYC Neuromodulation Conference",
+    },
+];
+
+function Publications() {
+    return (
+        <>
+            <div className="font-medium relative text-2xl mt-2 md:mt-4 mb-4">
+                Publications
+                <div className="absolute pt-px bg-white mt-px top-full w-full">
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-full"></div>
+                    <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
+                </div>
+            </div>
+            <ul className="w-10/12 mt-4 ml-4 px-0 md:px-1 space-y-5">
+                {publication_list.map((pub, index) => (
+                    <li key={index} className="list-disc text-sm md:text-base leading-tight">
+                        <div className="font-medium">
+                            {pub.link ? <a className="hover:underline" href={pub.link} target="_blank" rel="noreferrer">{pub.title}</a> : pub.title}
+                        </div>
+                        <div className="text-gray-300 mt-1">{pub.authors} ({pub.year})</div>
+                        <div className="text-ubt-gedit-orange text-sm mt-0.5 italic">{pub.venue}</div>
+                    </li>
+                ))}
+            </ul>
         </>
     )
 }
